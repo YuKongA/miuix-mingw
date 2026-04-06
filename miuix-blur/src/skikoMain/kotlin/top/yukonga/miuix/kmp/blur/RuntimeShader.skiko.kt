@@ -6,13 +6,14 @@ package top.yukonga.miuix.kmp.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.graphics.asComposeShader
 import androidx.compose.ui.graphics.colorspace.ColorSpaces
 import org.jetbrains.skia.RuntimeEffect
 import org.jetbrains.skia.RuntimeShaderBuilder
 
 actual fun RuntimeShader(shaderString: String): RuntimeShader = SkikoRuntimeShader(RuntimeShaderBuilder(RuntimeEffect.makeForShader(shaderString)))
 
-actual fun RuntimeShader.asComposeShader(): Shader = asSkikoRuntimeShader().makeShader()
+actual fun RuntimeShader.asComposeShader(): Shader = asSkikoRuntimeShader().makeShader().asComposeShader()
 
 actual fun RuntimeShader.asBrush(): ShaderBrush = ShaderBrush(this.asComposeShader())
 

@@ -22,8 +22,8 @@ val javadocJar by tasks.registering(Jar::class) {
 
 val githubUrl = "https://github.com"
 val githubPkgUrl = "https://maven.pkg.github.com"
-val owner = "compose-miuix-ui"
-val repository = "miuix"
+val owner = "YuKongA"
+val repository = "miuix-mingw"
 val projectUrl = "$githubUrl/$owner/$repository"
 val githubPackagesUrl = "$githubPkgUrl/$owner/$repository"
 val sonatypePackageUrl = layout.buildDirectory.dir("publishing/mavenCentral")
@@ -180,15 +180,15 @@ tasks.register("publishToMavenCentralUsingCentralApi") {
     }
 }
 
-// Signing artifacts. Signing.* extra properties values will be used
-signing {
-    val signingKey = System.getenv("GPG_SIGNING_KEY") ?: localProperties.getProperty("GPG_SIGNING_KEY")
-    val signingPassword = System.getenv("GPG_PASSPHRASE") ?: localProperties.getProperty("GPG_PASSPHRASE")
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
-}
-
-// Ensure all publish tasks depend on corresponding sign tasks
-tasks.withType<PublishToMavenRepository>().configureEach {
-    dependsOn(tasks.withType<Sign>())
+// Signing artifacts - only if GPG key is available
+val signingKey = System.getenv("GPG_SIGNING_KEY") ?: localProperties.getProperty("GPG_SIGNING_KEY")
+if (signingKey != null) {
+    signing {
+        val signingPassword = System.getenv("GPG_PASSPHRASE") ?: localProperties.getProperty("GPG_PASSPHRASE")
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign(publishing.publications)
+    }
+    tasks.withType<PublishToMavenRepository>().configureEach {
+        dependsOn(tasks.withType<Sign>())
+    }
 }

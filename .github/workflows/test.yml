@@ -1,36 +1,21 @@
-name: Build All Tests
+name: Build Tests
 
 on:
   push:
-    branches: ["main"]
+    branches: ["mingwX64"]
     paths-ignore:
       - "README.md"
-      - "docs/**"
-      - "example/ios/iosApp/Info.plist"
   pull_request:
-    branches: ["main"]
+    branches: ["mingwX64"]
     paths-ignore:
       - "README.md"
-      - "docs/**"
-      - "example/ios/iosApp/Info.plist"
 
 permissions:
   contents: read
 
 jobs:
   build:
-    strategy:
-      matrix:
-        include:
-          - target: "iosSimulatorArm64Test"
-            os: macos-latest
-          - target: "desktopTest"
-            os: ubuntu-latest
-          - target: "assembleAndroidTest"
-            os: ubuntu-latest
-          - target: "wasmJsBrowserTest"
-            os: ubuntu-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     steps:
       - name: Checkout Sources
         uses: actions/checkout@v6
@@ -39,17 +24,7 @@ jobs:
         with:
           distribution: "zulu"
           java-version: "21"
-      - name: Build with Gradle
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
-      - name: Run check
-        if: matrix.os == 'macos-latest'
-        run: ./gradlew check
-      - name: Run test
-        run: ./gradlew ${{ matrix.target }}
-      - name: Upload reports
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: reports
-          path: |
-            **/build/reports/**
+      - name: Run mingwX64 tests
+        run: ./gradlew mingwX64Test --no-configuration-cache

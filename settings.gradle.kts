@@ -3,13 +3,18 @@
 
 @file:Suppress("UnstableApiUsage")
 
-rootProject.name = "compose-miuix-ui"
+rootProject.name = "miuix-mingw"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     includeBuild("build-plugins")
     repositories {
+        mavenLocal()
+        maven {
+            name = "compose-mingw-maven-repository"
+            setUrl("https://raw.githubusercontent.com/YuKongA/compose-mingw_maven-repository/main/repository/releases")
+        }
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
@@ -24,6 +29,11 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        mavenLocal()
+        maven {
+            name = "compose-mingw-maven-repository"
+            setUrl("https://raw.githubusercontent.com/YuKongA/compose-mingw_maven-repository/main/repository/releases")
+        }
         google {
             mavenContent {
                 includeGroupAndSubgroups("androidx")
@@ -47,13 +57,5 @@ include(":miuix-icons")
 include(":miuix-navigation3-ui")
 include(":miuix-shapes")
 
-include(":baselineprofile")
-
 include(":example:shared")
-include(":example:android")
-include(":example:desktop")
-include(":example:web")
-include(":example:macos")
-
-include(":docs:demo")
-include(":docs:iconGen")
+include(":example:mingw")

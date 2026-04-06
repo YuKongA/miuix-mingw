@@ -2,33 +2,21 @@
 agp = "9.1.0"
 kotlin = "2.3.20"
 
-about-libraries = "14.0.0"
-androidx-activity = "1.13.0"
 androidx-collection = "1.6.0"
 androidx-navigation3 = "1.1.0"
-jetbrains-androidx-navigationevent = "1.0.1"
-jetbrains-compose-multiplatform = "1.10.3"
+jetbrains-androidx-navigationevent = "1.1.0-alpha01"
+jetbrains-compose-multiplatform = "1.11.0-alpha04"
 jetbrains-compose-window-size = "1.9.0"
 jetbrains-dokka = "2.2.0"
-jetbrains-compose-hotReload = "1.0.0"
-jetbrains-lifecycle = "2.10.0"
+jetbrains-lifecycle = "2.11.0-alpha01"
 materialKolor-utilities = "4.1.1"
 spotless = "8.4.0"
-
-junit = "1.3.0"
-espresso-core = "3.7.0"
-uiautomator = "2.3.0"
-benchmark-macro-junit4 = "1.4.1"
-baselineprofile = "1.5.0-alpha05"
-profileinstaller = "1.4.1"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 spotless-plugin-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
-aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "about-libraries" }
-androidx-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-collection = { module = "androidx.collection:collection", version.ref = "androidx-collection" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "androidx-navigation3" }
 jetbrains-androidx-navigationevent = { module = "org.jetbrains.androidx.navigationevent:navigationevent-compose", version.ref = "jetbrains-androidx-navigationevent" }
@@ -39,22 +27,9 @@ jetbrains-lifecycle-runtime = { module = "org.jetbrains.androidx.lifecycle:lifec
 jetbrains-lifecycle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "jetbrains-lifecycle" }
 materialKolor-utilities = { module = "com.materialkolor:material-color-utilities", version.ref = "materialKolor-utilities" }
 
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
-androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmark-macro-junit4" }
-androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
-
 [plugins]
-androidApplication = { id = "com.android.application" } # AGP
-androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library" } # AGP
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform" } # KGP
 
-aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "jetbrains-compose-hotReload" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose-multiplatform" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
-
-androidTest = { id = "com.android.test" } # AGP
-baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }

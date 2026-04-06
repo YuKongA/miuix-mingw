@@ -1,10 +1,7 @@
 // Copyright 2025, compose-miuix-ui contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-
 plugins {
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlinMultiplatform)
@@ -12,34 +9,7 @@ plugins {
 }
 
 kotlin {
-    withSourcesJar(true)
-
-    android {
-        buildToolsVersion = BuildConfig.BUILD_TOOLS_VERSION
-        compileSdk {
-            version =
-                release(BuildConfig.COMPILE_SDK) {
-                    minorApiLevel = BuildConfig.COMPILE_SDK_MINOR
-                }
-        }
-        minSdk = BuildConfig.MIN_SDK
-        namespace = "${BuildConfig.LIBRARY_ID}.icon"
-    }
-
-    jvm("desktop")
-
-    iosArm64()
-    iosSimulatorArm64()
-    macosArm64()
-
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-    }
-
-    js(IR) {
-        browser()
-    }
+    mingwX64()
 
     sourceSets {
         commonMain.dependencies {
